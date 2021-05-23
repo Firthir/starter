@@ -140,7 +140,7 @@ export default {
     // Splitting
   },
   mounted() {
-    console.log("New component mounted.");
+    console.log("Animated.");
     Splitting();
     ScrollOut({
       targets: ".word",
@@ -150,7 +150,7 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style scoped>
 .owText {
   text-align: center;
   -webkit-text-stroke: 2px white;

@@ -1,68 +1,86 @@
-@import "@/scss/variables.scss";
-@import "@/scss/animation.scss";
+@import '@/scss/variables.scss';
+@font-face {
+    font-family: 'Brush Script Std';
+    src: url('/fonts/BrushScriptStd.woff2') format('woff2'), url('/fonts/BrushScriptStd.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+body #app h1 {
+    font-family: 'Brush Script Std';
+    font-weight: 500;
+    font-style: italic;
+    font-size: 50px;
+    line-height: 1;
+    margin: 0 auto;
+    padding: 100px 0;
+    text-align: center;
+    max-width: 750px;
+}
 
 .title {
-  text-transform: uppercase;
-  font-size: 100px;
-  width: $sidebar-width;
-  float: left;
-  text-align: left;
-  z-index: 10000;
-  position: fixed;
-  min-height: 100vh;
-  margin: 0;
-  padding: 20px 10px;
+    text-transform: uppercase;
+    font-size: 100px;
+    width: $sidebar-width;
+    float: left;
+    text-align: left;
+    z-index: 10000;
+    position: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 10px;
 
-  border-right: 1px solid rgba($blue, 0.6);
-  background: rgba(0, 0, 0, 0.7);
-  color: $brown;
+    border-right: 1px solid rgba($blue, 0.6);
+    background: rgba(0, 0, 0, 0.7);
+    color: $brown;
 }
 
 .page {
-  float: right;
-  width: calc(100% - (#{$sidebar-width} + 40px));
+    float: right;
+    width: calc(100% - (#{$sidebar-width} + 40px));
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
 }
 
 .fade-enter,
 .fade-leave-active {
-  opacity: 0;
+    opacity: 0;
 }
 .view {
-  padding: 0 30px;
+    padding: 0 30px;
 }
 
-.child-view {
-  position: absolute;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  width: calc(100% - 120px);
-  background: $dark-blue;
-  height: 100%;
+// .child-view {
+//   position: absolute;
+//   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+//   width: calc(100% - 120px);
+//   background: $dark-blue;
+//   height: 100%;
 
-  display: flex;
-  justify-content: center;
-  color: white;
-  text-align: center;
-  align-items: center;
-}
-.child-wrapper {
-  position: relative;
-  height: 50vh;
-  display: inline-block;
-  width: calc(100% - 230px);
-}
+//   display: flex;
+//   justify-content: center;
+//   color: white;
+//   text-align: center;
+//   align-items: center;
+// }
+// .child-wrapper {
+//   position: relative;
+//   height: 50vh;
+//   display: inline-block;
+//   width: calc(100% - 230px);
+// }
 
 .slide-up-enter,
 .slide-down-leave-active {
-  opacity: 0;
-  transform: translate(0, 300px);
+    opacity: 0;
+    transform: translate(0, 300px);
 }
 .slide-up-leave-active,
 .slide-down-enter {
-  opacity: 0;
-  transform: translate(0, -300px);
+    opacity: 0;
+    transform: translate(0, -300px);
 }
