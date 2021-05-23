@@ -8,6 +8,7 @@
         <ul class="text-medium text-gray-300">
             <li class="type">{{ poem.gsx$type.$t }}</li>
         </ul>
+        <hr />
     </div>
 </template>
 
