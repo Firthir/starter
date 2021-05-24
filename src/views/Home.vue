@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import Card from '@/components/Card.vue';
 
 export default {
@@ -24,11 +24,17 @@ export default {
     data() {
         return {
             title: 'Poetry in Canberra, inspiration to express inner reflection',
-            poems: null,
+            // poems: null,
         };
     },
+    computed: {
+        poems() {
+            return this.$store.state.poems;
+        },
+    },
     mounted() {
-        this.getPoems();
+        this.$store.dispatch('getPoems');
+        // this.getPoems();
     },
     metaInfo() {
         return {
@@ -45,21 +51,16 @@ export default {
         };
     },
     methods: {
-        async getPoems() {
-            const gsheet_url = 'https://spreadsheets.google.com/feeds/list/11Ij6ozLqyHr9DWnvI8RtR0zpbOhWb2XdrsvcmrWD4Jc/1/public/values?alt=json';
-            try {
-                const response = await axios.get(gsheet_url);
-                console.log(response.data.feed.entry);
-                this.poems = response.data.feed.entry.reverse();
-            } catch (error) {
-                console.error(error);
-            }
-        },
-        calculatePoemCount() {
-            for (let i = 0; i < this.poems.length; i++) {
-                this.imageCounter++;
-            }
-        },
+        // async getPoems() {
+        //     const gsheet_url = 'https://spreadsheets.google.com/feeds/list/11Ij6ozLqyHr9DWnvI8RtR0zpbOhWb2XdrsvcmrWD4Jc/1/public/values?alt=json';
+        //     try {
+        //         const response = await axios.get(gsheet_url);
+        //         console.log(response.data.feed.entry);
+        //         this.poems = response.data.feed.entry.reverse();
+        //     } catch (error) {
+        //         console.error(error);
+        //     }
+        // },
     },
 };
 </script>
