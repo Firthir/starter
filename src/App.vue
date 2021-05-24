@@ -24,6 +24,24 @@
     </div>
 </template>
 
+<script>
+export default {
+    name: 'App',
+    metaInfo() {
+        return {
+            title: 'Poetry in Canberra, inspiration to express inner reflection - Jeffrey Frith',
+            meta: [
+                { name: 'description', content: 'Nature provides me the inspiration to express, not only the nature of materials, but also the nature of beauty and inner reflection. This is the essence of my work.' },
+                { property: 'og:title', content: 'Poetry in Canberra, inspiration to express inner reflection - Jeffrey Frith' },
+                { property: 'og:site_name', content: 'Jeffrey Frith' },
+                { property: 'og:type', content: 'website' },
+                { name: 'robots', content: 'index,follow' },
+            ],
+        };
+    },
+};
+</script>
+
 <style lang="scss">
 @import '@/scss/app.scss';
 </style>
