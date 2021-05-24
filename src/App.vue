@@ -11,11 +11,11 @@
             </svg>
         </div>
         <div class="page">
-            <ul class="flex text-right flex-nowrap items-end justify-between w-1/2 p-2 uppercase">
-                <router-link class="menu__item" tag="li" active-class="menu__item--active" to="/" exact><a>home</a></router-link>
-                <router-link class="menu__item" tag="li" active-class="menu__item--active" to="/about/"><a>about</a></router-link>
-                <router-link class="menu__item" tag="li" active-class="menu__item--active" to="/projects"><a>projects</a></router-link>
-                <router-link class="menu__item" tag="li" active-class="menu__item--active" to="/animation"><a>animation</a></router-link>
+            <ul class="flex text-right flex-nowrap items-end justify-between w-1/2 p-2">
+                <router-link class="menu__item" tag="li" active-class="menu__item--active" to="/" exact><a>Home</a></router-link>
+                <router-link class="menu__item" tag="li" active-class="menu__item--active" to="/about/"><a>About</a></router-link>
+                <router-link class="menu__item" tag="li" active-class="menu__item--active" to="/projects"><a>Projects</a></router-link>
+                <router-link class="menu__item" tag="li" active-class="menu__item--active" to="/animation"><a>Animation</a></router-link>
             </ul>
             <transition name="fade" mode="out-in">
                 <router-view class="view"></router-view>

@@ -4,9 +4,9 @@
             Nature provides me the inspiration to express, not only the nature of materials, but also the nature of beauty and inner reflection. This is the essence of my work.
         </h1>
         <hr />
-        <h1>
-            Reflections
-        </h1>
+        <h2>
+            Daily Reflections
+        </h2>
         <div class="flex flex-wrap place-items-stretch">
             <Card v-for="poem in poems" :key="poem.gsx$id" :poem="poem" />
         </div>
