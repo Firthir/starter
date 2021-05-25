@@ -1,10 +1,8 @@
-// A boiler plate for our vuex store module.
-// import dependency to handle HTTP request to our back end
-import axios from 'axios';
-import Vuex from 'vuex';
+// A boiler plate
 import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios';
 
-//load Vuex
 Vue.use(Vuex);
 
 //to handle state
