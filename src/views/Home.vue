@@ -3,20 +3,27 @@
         <h1>
             Nature provides me the inspiration to express, not only the nature of materials, but also the nature of beauty and inner reflection. This is the essence of my work.
         </h1>
+
+        <hr />
+        <div class="particles"></div>
         <hr />
         <h2>
             Daily Reflections
         </h2>
-        <div class="flex flex-wrap place-items-stretch">
-            <Card v-for="poem in poems" :key="poem.gsx$id" :poem="poem" />
+
+        <div :class="`${startIt ? 'startIt' : ''} list-poems flex flex-wrap place-items-stretch`">
+            <Card v-for="(poem, index) in poems" :key="poem.gsx$id" :poem="poem" :style="`--staggered: ${index}`" />
         </div>
+        <span ref="target" />
     </div>
 </template>
 
 <script>
-// import axios from 'axios';
 import Card from '@/components/Card.vue';
-
+const options = {
+    root: null,
+    threshold: 0,
+};
 export default {
     components: {
         Card,
@@ -24,7 +31,9 @@ export default {
     data() {
         return {
             title: 'Poetry in Canberra, inspiration to express inner reflection',
-            // poems: null,
+            poemFilterKey: 'all',
+            observer: null,
+            startIt: false,
         };
     },
     computed: {
@@ -32,9 +41,16 @@ export default {
             return this.$store.state.poems;
         },
     },
-    mounted() {
+    beforeMount() {
         this.$store.dispatch('getPoems');
         // this.getPoems();
+    },
+    mounted() {
+        this.observer = new IntersectionObserver(this.callback, options);
+        this.observer.observe(this.$refs.target);
+        setTimeout(() => {
+            this.addParticles();
+        }, 500);
     },
     metaInfo() {
         return {
@@ -51,18 +67,88 @@ export default {
         };
     },
     methods: {
-        // async getPoems() {
-        //     const gsheet_url = 'https://spreadsheets.google.com/feeds/list/11Ij6ozLqyHr9DWnvI8RtR0zpbOhWb2XdrsvcmrWD4Jc/1/public/values?alt=json';
-        //     try {
-        //         const response = await axios.get(gsheet_url);
-        //         console.log(response.data.feed.entry);
-        //         this.poems = response.data.feed.entry.reverse();
-        //     } catch (error) {
-        //         console.error(error);
-        //     }
-        // },
+        callback(entries) {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    this.startIt = true;
+                }
+            });
+        },
+        addParticles() {
+            // Some random colors
+            const colors = ['#3CC157', '#2AA7FF', '#1B1B1B', '#FCBC0F', '#F85F36'];
+
+            // const numBalls = this.poems.length;
+            const balls = [];
+            this.$store.state.poems.forEach(function(poem) {
+                let ball = document.createElement('div');
+                let title = document.createTextNode(poem.gsx$type.$t);
+                ball.appendChild(title);
+
+                ball.classList.add('ball');
+                ball.style.background = colors[Math.floor(Math.random() * colors.length)];
+                ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
+                ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
+                ball.style.transform = `scale(${Math.random()})`;
+                ball.style.width = `${Math.random()}em`;
+                ball.style.height = ball.style.width;
+                balls.push(ball);
+                document.querySelector('.particles').append(ball);
+            });
+
+            // Keyframes
+            balls.forEach((el, i) => {
+                let to = {
+                    x: Math.random() * (i % 2 === 0 ? -11 : 11),
+                    y: Math.random() * 12,
+                };
+
+                el.animate([{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x}rem, ${to.y}rem)` }], {
+                    duration: (Math.random() + 1) * 4000, // random duration
+                    direction: 'alternate',
+                    fill: 'both',
+                    iterations: Infinity,
+                    easing: 'ease-in-out',
+                });
+            });
+        },
     },
 };
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+.list-poems .card {
+    display: none;
+}
+.startIt .card {
+    display: block;
+    animation-name: animateIn;
+    animation-duration: 1350ms;
+    animation-delay: calc(var(--staggered) * 100ms);
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+.particles {
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+.ball {
+    position: absolute;
+    border-radius: 100%;
+    opacity: 0.7;
+}
+
+.ball:hover {
+}
+
+@keyframes animateIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.6) translateY(-8px);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+</style>

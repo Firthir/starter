@@ -11,7 +11,14 @@ const state = {
 };
 
 //to handle state
-const getters = {};
+const getters = {
+    doneTodos: (state) => {
+        return state.poems.filter((todo) => todo.gsx$mood.$t.toLowerCase());
+    },
+    // filterByMood: (state) => (mood) => {
+    //     return state.poems.filter((poem) => !poem.gsx$mood.$t.toLowerCase().indexOf(mood));
+    // },
+};
 
 //to handle actions
 const actions = {
