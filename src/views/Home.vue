@@ -6,18 +6,19 @@
 
         <hr />
         <div class="reflections-background relative">
-            <img class=" absolute top-0 left-20" :src="`${publicPath}/images/reflections-background.jpg`" alt="" />
+            <img class=" absolute top-0 left-20" :src="`${publicPath}images/reflections-background.jpg`" alt="" />
             <div class="particles"></div>
         </div>
         <hr />
         <h2>
             Daily Reflections
         </h2>
-
-        <div :class="`${startIt ? 'startIt' : ''} list-poems flex flex-wrap place-items-stretch`">
-            <Card v-for="(poem, index) in poems" :key="poem.gsx$id" :poem="poem" :style="`--staggered: ${index}`" />
+        <div class="hidden">
+            <div :class="`${startIt ? 'startIt' : ''} list-poems flex flex-wrap place-items-stretch`">
+                <Card v-for="(poem, index) in poems" :key="poem.gsx$id" :poem="poem" :style="`--staggered: ${index}`" />
+            </div>
+            <span ref="target" />
         </div>
-        <span ref="target" />
     </div>
 </template>
 
@@ -47,7 +48,6 @@ export default {
     },
     beforeMount() {
         this.$store.dispatch('getPoems');
-        // this.getPoems();
     },
     mounted() {
         this.observer = new IntersectionObserver(this.callback, options);
@@ -87,7 +87,7 @@ export default {
             this.$store.state.poems.forEach(function(poem) {
                 let ball = document.createElement('div');
                 ball.classList.add('ball');
-                let title = document.createTextNode(poem.gsx$type.$t);
+                let title = document.createTextNode(poem.gsx$verse.$t);
                 ball.appendChild(title);
                 ball.style.background = colors[Math.floor(Math.random() * colors.length)];
                 ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
@@ -123,6 +123,7 @@ export default {
 .reflections-background img {
     height: 800px;
     width: auto;
+    max-width: 100%;
     background-size: cover;
 }
 .list-poems .card {
