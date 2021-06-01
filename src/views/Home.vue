@@ -6,7 +6,7 @@
 
         <hr />
         <div class="reflections-background relative">
-            <img class=" absolute top-0 left-20" src="../assets/reflections-background.jpg" alt="" />
+            <img class=" absolute top-0 left-20" :src="`${publicPath}/images/reflections-background.jpg`" alt="" />
             <div class="particles"></div>
         </div>
         <hr />
@@ -34,6 +34,7 @@ export default {
     data() {
         return {
             title: 'Poetry in Canberra, inspiration to express inner reflection',
+            publicPath: process.env.BASE_URL,
             poemFilterKey: 'all',
             observer: null,
             startIt: false,
