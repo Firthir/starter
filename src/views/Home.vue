@@ -5,7 +5,10 @@
         </h1>
 
         <hr />
-        <div class="particles"></div>
+        <div class="reflections-background relative">
+            <img class=" absolute top-0 left-20" src="../assets/reflections-background.jpg" alt="" />
+            <div class="particles"></div>
+        </div>
         <hr />
         <h2>
             Daily Reflections
@@ -50,7 +53,7 @@ export default {
         this.observer.observe(this.$refs.target);
         setTimeout(() => {
             this.addParticles();
-        }, 500);
+        }, 1500);
     },
     metaInfo() {
         return {
@@ -82,10 +85,9 @@ export default {
             const balls = [];
             this.$store.state.poems.forEach(function(poem) {
                 let ball = document.createElement('div');
+                ball.classList.add('ball');
                 let title = document.createTextNode(poem.gsx$type.$t);
                 ball.appendChild(title);
-
-                ball.classList.add('ball');
                 ball.style.background = colors[Math.floor(Math.random() * colors.length)];
                 ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
                 ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
@@ -117,6 +119,11 @@ export default {
 </script>
 
 <style lang="css">
+.reflections-background img {
+    height: 800px;
+    width: auto;
+    background-size: cover;
+}
 .list-poems .card {
     display: none;
 }
@@ -130,7 +137,7 @@ export default {
 }
 .particles {
     width: 100%;
-    height: 400px;
+    height: 600px;
     position: relative;
 }
 .ball {
