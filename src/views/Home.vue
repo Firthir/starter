@@ -1,18 +1,17 @@
 <template>
     <div>
-        <h1>
-            Nature provides me the inspiration to express, not only the nature of materials, but also the nature of beauty and inner reflection. This is the essence of my work.
-        </h1>
-
-        <hr />
+        <h2>
+            Daily Reflections
+        </h2>
         <div class="reflections-background relative">
             <img class=" absolute top-0 left-20" :src="`${publicPath}images/reflections-background.jpg`" alt="" />
             <div class="particles"></div>
         </div>
         <hr />
-        <h2>
-            Daily Reflections
-        </h2>
+
+        <h1 class="my-6">
+            Nature provides me the inspiration to express, not only the nature of materials, but also the nature of beauty and inner reflection. This is the essence of my work.
+        </h1>
         <div class="hidden">
             <div :class="`${startIt ? 'startIt' : ''} list-poems flex flex-wrap place-items-stretch`">
                 <Card v-for="(poem, index) in poems" :key="poem.gsx$id" :poem="poem" :style="`--staggered: ${index}`" />
@@ -79,38 +78,35 @@ export default {
             });
         },
         addParticles() {
-            // Some random colors
-            const colors = ['#3CC157', '#2AA7FF', '#1B1B1B', '#FCBC0F', '#F85F36'];
-
-            // const numBalls = this.poems.length;
-            const balls = [];
+            const flowers = [];
+            let flowerIndex = 0;
             this.$store.state.poems.forEach(function(poem) {
-                let ball = document.createElement('div');
-                ball.classList.add('ball');
-                let title = document.createTextNode(poem.gsx$verse.$t);
-                ball.appendChild(title);
-                ball.style.background = colors[Math.floor(Math.random() * colors.length)];
-                ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
-                ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
-                ball.style.transform = `scale(${Math.random()})`;
-                ball.style.width = `${Math.random()}em`;
-                ball.style.height = ball.style.width;
-                balls.push(ball);
-                document.querySelector('.particles').append(ball);
+                let flower = document.createElement('div');
+                flower.classList.add(`flowerIndex-${flowerIndex}`);
+                // let title = document.createTextNode();
+                flower.innerHTML = `<div class="verse">${poem.gsx$verse.$t.replaceAll('/', '<br />')} </div>`;
+                flower.style.left = `${Math.floor(Math.random() * 1000)}px`;
+                flower.style.top = `${Math.floor(Math.random() * 150)}px`;
+                flower.style.transform = `scale(${Math.random()})`;
+
+                flowers.push(flower);
+                document.querySelector('.particles').append(flower);
+                flowerIndex++;
+                flowerIndex = flowerIndex % 4;
             });
 
             // Keyframes
-            balls.forEach((el, i) => {
+            flowers.forEach((el, i) => {
                 let to = {
-                    x: Math.random() * (i % 2 === 0 ? -11 : 11),
-                    y: Math.random() * 12,
+                    x: Math.random() * (i % 2 === 0 ? -11 : 10),
+                    y: Math.random() * 10,
                 };
 
-                el.animate([{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x}rem, ${to.y}rem)` }], {
-                    duration: (Math.random() + 1) * 4000, // random duration
+                el.animate([{ transform: 'translate(50%, 50%)' }, { transform: `translate(${to.x}rem, ${to.y}rem)` }], {
+                    duration: (Math.random() + 1) * 5000, // random duration
                     direction: 'alternate',
                     fill: 'both',
-                    iterations: Infinity,
+                    iterations: 1,
                     easing: 'ease-in-out',
                 });
             });
@@ -120,11 +116,14 @@ export default {
 </script>
 
 <style lang="css">
+.reflections-background {
+    overflow: hidden;
+    padding: 40px;
+}
 .reflections-background img {
-    height: 800px;
-    width: auto;
-    max-width: 100%;
-    background-size: cover;
+    height: auot;
+    width: 100%;
+    max-width: 800px;
 }
 .list-poems .card {
     display: none;
@@ -139,16 +138,44 @@ export default {
 }
 .particles {
     width: 100%;
-    height: 600px;
+    height: 800px;
     position: relative;
+    text-align: center;
 }
-.ball {
+.flowerIndex-0,
+.flowerIndex-1,
+.flowerIndex-2,
+.flowerIndex-3 {
+    background-size: 50% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    width: 50px;
+    height: 50px;
     position: absolute;
-    border-radius: 100%;
-    opacity: 0.7;
 }
 
-.ball:hover {
+.flowerIndex-0 {
+    background: url(/images/flower.svg);
+}
+.flowerIndex-1 {
+    background: url(/images/flower1.svg);
+}
+.flowerIndex-2 {
+    background: url(/images/flower2.svg);
+}
+.flowerIndex-3 {
+    background: url(/images/flower3.svg);
+}
+
+.verse {
+    display: none;
+}
+
+.particles div:hover > .verse {
+    display: block;
+    width: 400px;
+    background: white;
+    border-radius: 10px;
 }
 
 @keyframes animateIn {
