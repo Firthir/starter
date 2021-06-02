@@ -152,6 +152,7 @@ export default {
     width: 50px;
     height: 50px;
     position: absolute;
+    z-index: 1;
 }
 
 .flowerIndex-0 {
@@ -168,14 +169,23 @@ export default {
 }
 
 .verse {
-    display: none;
+    padding: 20px;
+    width: 400px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+    position: relative;
 }
 
 .particles div:hover > .verse {
-    display: block;
+    padding: 20px;
     width: 400px;
-    background: white;
+    background: whitesmoke;
     border-radius: 10px;
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
 }
 
 @keyframes animateIn {
