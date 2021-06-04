@@ -1,0 +1,136 @@
+.reflections-background {
+    overflow: hidden;
+    padding: 40px;
+}
+.reflections-background img {
+    height: auot;
+    width: 100%;
+    max-width: 800px;
+}
+.list-poems .card {
+    display: none;
+}
+.startIt .card {
+    display: block;
+    animation-name: animateIn;
+    animation-duration: 1350ms;
+    animation-delay: calc(var(--staggered) * 100ms);
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+.flowers {
+    width: 100%;
+    height: 800px;
+    position: relative;
+    text-align: center;
+}
+.flower {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 1;
+}
+
+.group-0 .shape {
+    background: url(/images/flower.svg);
+}
+.group-1 .shape {
+    background: url(/images/flower1.svg);
+}
+.group-2 .shape {
+    background: url(/images/flower2.svg);
+}
+.group-3 .shape {
+    background: url(/images/flower3.svg);
+}
+
+.shape {
+    filter: brightness(0.1) sepia(0) hue-rotate(180deg) saturate(10);
+    background-size: 50% 50% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    width: 50px;
+    height: 50px;
+}
+
+.hovered.red .shape {
+    filter: invert(11%) sepia(93%) saturate(5379%) hue-rotate(353deg) brightness(68%) contrast(106%);
+}
+.hovered.yellow .shape {
+    filter: invert(76%) sepia(39%) saturate(535%) hue-rotate(359deg) brightness(103%) contrast(83%);
+}
+.hovered.green .shape {
+    filter: invert(57%) sepia(22%) saturate(1096%) hue-rotate(123deg) brightness(87%) contrast(97%);
+}
+.hovered.blue .shape {
+    filter: invert(28%) sepia(10%) saturate(1707%) hue-rotate(152deg) brightness(86%) contrast(97%);
+}
+.hovered.indigo .shape {
+    filter: invert(23%) sepia(12%) saturate(1380%) hue-rotate(196deg) brightness(96%) contrast(88%);
+}
+.hovered.purple .shape {
+    filter: invert(12%) sepia(84%) saturate(4513%) hue-rotate(267deg) brightness(85%) contrast(112%);
+}
+.hovered.pink .shape {
+    filter: invert(91%) sepia(41%) saturate(1359%) hue-rotate(293deg) brightness(101%) contrast(101%);
+}
+
+.flowers > .flower {
+    animation-name: animateIn;
+    animation-duration: 800ms;
+    animation-delay: calc(var(--staggered) * 800ms);
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+
+.verse {
+    padding: 20px;
+    width: 400px;
+    visibility: hidden;
+    background: rgba(188, 188, 188, 0.94);
+    border-radius: 10px;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+    position: absolute;
+    top: 50px;
+    filter: none !important;
+}
+
+.right-side .verse {
+    right: 0;
+}
+.left-side .verse {
+    left: 0;
+}
+
+.flower:hover > .verse {
+    visibility: visible;
+    opacity: 1;
+}
+
+.flowers > .flower.active {
+    opacity: 1;
+}
+
+.flowers > .flower {
+    opacity: 0.5;
+}
+
+.flowers .flower:hover {
+    z-index: 2;
+}
+.flower:hover > .verse {
+    visibility: visible;
+    opacity: 1;
+}
+
+@keyframes animateIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.6) translateY(-8px);
+    }
+    100% {
+        opacity: 1;
+    }
+}

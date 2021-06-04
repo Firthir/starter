@@ -1,4 +1,6 @@
-@import '@/scss/variables.scss';
+@import './variables.scss';
+@import './animation.scss';
+
 @font-face {
     font-family: 'Brush Script Std';
     src: url('/fonts/BrushScriptStd.woff2') format('woff2'), url('/fonts/BrushScriptStd.woff') format('woff');

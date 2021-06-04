@@ -1,13 +1,11 @@
 <template>
-    <div :class="`card w-1/3 drop-shadow-md p-10 border-${color}-100 border-2 rounded-xl m-10`">
-        <div class="verse pb-10">
+    <div :class="`flower ${color} ${poem.gsx$type.$t}`">
+        <div class="verse">
             <p v-for="poem in poemArray" :key="poem.gsx$id">
                 {{ poem }}
             </p>
         </div>
-        <div class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-            {{ poem.gsx$type.$t }}
-        </div>
+        <div class="shape"></div>
     </div>
 </template>
 
@@ -17,6 +15,10 @@ export default {
     props: {
         poem: {
             type: Object,
+            required: true,
+        },
+        index: {
+            type: Number,
             required: true,
         },
     },
