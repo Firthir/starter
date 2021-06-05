@@ -32,7 +32,7 @@ export default {
                 coef: [0.1, 0.2, 0.4, 0.6, 0.8], //how much the letters move from the mouse (starting from the deepest layer)
                 size: [16, 22, 36, 40, 46], //font size of the letters (starting from the deepest layer)
                 color: ['#c0a27a', '#c0a27ab0', '#c0a27a69', '#c0a27a2b', '#c0a27ac7'], //color of the letters (starting from the deepest layer)
-                font: 'Courier', //font family (of every layer)
+                font: 'Brush Script Std', //font family (of every layer)
             };
             // /*End of options*/
             let characters = [];

@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app flex">
         <div class="title">
             <div class="logo absolute top-0 left-0 text-center w-full">
                 <svg class="my-4 mx-auto block" width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,12 +14,8 @@
             <Alpha />
         </div>
         <div class="page">
-            <ul class="flex text-right flex-nowrap items-end justify-between w-1/2 p-2">
-                <router-link class="menu__item" active-class="menu__item--active" to="/" exact><a>Home</a></router-link>
-                <router-link class="menu__item" active-class="menu__item--active" to="/about/"><a>About</a></router-link>
-                <router-link class="menu__item" active-class="menu__item--active" to="/projects"><a>Projects</a></router-link>
-                <router-link class="menu__item" active-class="menu__item--active" to="/animation"><a>Animation</a></router-link>
-            </ul>
+            <Nav />
+
             <transition name="fade" mode="out-in">
                 <router-view class="view"></router-view>
             </transition>
@@ -29,16 +25,21 @@
 
 <script>
 import Alpha from '@/components/Alpha';
+import Nav from '@/components/Nav';
 export default {
     name: 'App',
     components: {
         Alpha,
+        Nav,
     },
     metaInfo() {
         return {
             title: 'Poetry in Canberra, inspiration to express inner reflection - Jeffrey Frith',
             meta: [
-                { name: 'description', content: 'Nature provides me the inspiration to express, not only the nature of materials, but also the nature of beauty and inner reflection. This is the essence of my work.' },
+                {
+                    name: 'description',
+                    content: 'Nature provides me the inspiration to express, not only the nature of materials, but also the nature of beauty and inner reflection. This is the essence of my work.',
+                },
                 { property: 'og:title', content: 'Poetry in Canberra, inspiration to express inner reflection - Jeffrey Frith' },
                 { property: 'og:site_name', content: 'Jeffrey Frith' },
                 { property: 'og:type', content: 'website' },

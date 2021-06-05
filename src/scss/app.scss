@@ -9,29 +9,19 @@
     font-display: swap;
 }
 
-body #app {
-    color: rgba(0, 0, 0, 0.7);
+body {
+    color: #4c4c4c;
 }
 
-body #app h1 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: 'Brush Script Std';
-    font-weight: 500;
+    font-weight: 500 !important;
     font-style: italic;
-    font-size: 50px;
-    line-height: 1;
-    margin: 0 auto;
-    padding: 100px 0;
-    text-align: center;
-    max-width: 750px;
-    color: $brown;
-}
-body #app h2 {
-    font-family: 'Brush Script Std';
-    font-weight: 500;
-    font-style: italic;
-    font-size: 40px;
-    line-height: 1;
-    padding: 100px 0;
+    font-size: 20px !important;
 }
 
 .flex {
@@ -50,23 +40,57 @@ body #app h2 {
 }
 
 .title {
-    float: left;
     width: $sidebar-width;
     text-align: left;
     z-index: 10000;
     position: fixed;
     min-height: 100vh;
     margin: 0;
-
-    background: rgba(0, 0, 0, 0.7);
+    background: $black;
     color: $brown;
     overflow: hidden;
     z-index: 1;
 }
 
+.nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60px;
+    z-index: 10;
+    transition: all 0.4s ease-in-out;
+}
+.nav.active {
+    width: 300px;
+}
+
+.nav-links {
+    position: relative;
+    right: -300px;
+    transition: all 0.4s ease-in-out;
+    min-height: 100vh;
+}
+
+.nav-links.active {
+    background: $black;
+    color: $brown;
+    right: 0;
+    width: 300px;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+.nav-link {
+    display: block;
+    padding: 15px;
+    text-align: center;
+}
+.nav-link:hover {
+    color: white;
+}
+
 .page {
-    float: right;
-    width: calc(100% - (#{$sidebar-width} + 40px));
+    width: calc(100% - (#{$sidebar-width}));
+    margin-left: $sidebar-width;
     position: relative;
     z-index: 2;
 }
@@ -81,7 +105,7 @@ body #app h2 {
     opacity: 0;
 }
 .view {
-    padding: 0 30px;
+    padding: 30px;
 }
 
 // .child-view {

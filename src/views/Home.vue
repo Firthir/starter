@@ -1,16 +1,20 @@
 <template>
-    <div>
-        <h2>
-            Daily Reflections
-        </h2>
+    <div class="relative">
         <div class="reflections-background relative">
-            <img class="absolute top-0 left-20" :src="`${publicPath}images/reflections-background.jpg`" alt="" />
+            <img class="" :src="`${publicPath}images/reflections-background.jpg`" alt="" />
+            <div class="intro w-1/4 absolute top-0 left-0 ">
+                <h2>
+                    Daily Reflections
+                </h2>
+                <p>Reflecting on ourselves and our environments is a healthy and adaptive practice, interact with the floating flowers.</p>
+                <p>Take your time and enjoy the space.</p>
+            </div>
             <div class="flowers">
                 <flower
                     v-for="(poem, index) in poems"
                     :key="poem.gsx$id"
                     :poem="poem"
-                    :style="`left: ${floorRandom(1000)}px; --staggered: ${index};  top: ${floorRandom(300)}px; transform: sacle(${random()});`"
+                    :style="`left: ${floorRandom(350)}px; --staggered: ${index};  top: ${floorRandom(200)}px; transform: sacle(${random()});`"
                     :index="index"
                     :class="`group-${index % 4}`"
                     @mouseover.native="addClass"
@@ -37,7 +41,7 @@ export default {
         return {
             title: 'Poetry in Canberra, inspiration to express inner reflection',
             publicPath: null,
-            flowers: [],
+            flowerGroup: [],
             isHovering: false,
         };
     },
@@ -89,18 +93,22 @@ export default {
         },
 
         wind() {
-            this.flowers = document.querySelectorAll('.flowers');
-            let halfway = this.flowers.length / 2;
-            this.flowers.forEach((el, i) => {
+            this.flowerGroup = document.querySelectorAll('.flower');
+            let halfway = this.flowerGroup.length / 2;
+            this.flowerGroup.forEach((el, i) => {
+                console.log('hi');
+                console.log(halfway);
                 let to = {
-                    x: Math.random() * (i % 2 === 0 ? -11 : 10),
-                    y: Math.random() * 10,
+                    x: this.floorRandom(i > halfway ? -11 - (-2 - i) : 11 + (2 + i)),
+                    y: Math.random() * 16,
                 };
+                console.log(to.x);
+                console.log(to.y);
                 if (i === halfway) {
                     el.classList.add('activate');
                 }
                 el.animate([{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x}rem, ${to.y}rem)` }], {
-                    duration: (Math.random() + 1) * 10000, // random duration
+                    duration: (Math.random() + 2) * 5000, // random duration
                     direction: 'alternate',
                     fill: 'both',
                     iterations: 1,
