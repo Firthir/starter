@@ -3,11 +3,11 @@
         <div class="reflections-background relative">
             <img class="" :src="`${publicPath}images/reflections-background.jpg`" alt="" />
             <div class="intro w-1/4 absolute top-0 left-0 ">
-                <h2>
+                <h1 class="text-2xl">
                     Daily Reflections
-                </h2>
-                <p>Reflecting on ourselves and our environments is a healthy and adaptive practice, interact with the floating flowers.</p>
-                <p>Take your time and enjoy the space.</p>
+                </h1>
+                <p class="text-xs">Interact with the floating flowers.</p>
+                <p class="text-xs">Take your time and enjoy the space.</p>
             </div>
             <div class="flowers">
                 <flower
@@ -24,9 +24,9 @@
         </div>
         <hr />
 
-        <h1 class="my-6">
+        <h2 class="my-6">
             Nature provides me the inspiration to express, not only the nature of materials, but also the nature of beauty and inner reflection. This is the essence of my work.
-        </h1>
+        </h2>
     </div>
 </template>
 
@@ -55,7 +55,9 @@ export default {
         this.publicPath = process.env.BASE_URL;
     },
     mounted() {
-        this.wind();
+        setTimeout(() => {
+            this.wind();
+        }, 500);
     },
     metaInfo() {
         return {
@@ -94,18 +96,19 @@ export default {
 
         wind() {
             this.flowerGroup = document.querySelectorAll('.flower');
-            let halfway = this.flowerGroup.length / 2;
+            let halfway = Math.floor(this.flowerGroup.length / 2);
             this.flowerGroup.forEach((el, i) => {
-                console.log('hi');
-                console.log(halfway);
                 let to = {
-                    x: this.floorRandom(i > halfway ? -11 - (-2 - i) : 11 + (2 + i)),
-                    y: Math.random() * 16,
+                    x: this.floorRandom(i % 2 === 0 ? -40 - -(4 * i) : -15 - -(2 * i)),
+                    y: Math.random() * 20,
                 };
-                console.log(to.x);
-                console.log(to.y);
                 if (i === halfway) {
-                    el.classList.add('activate');
+                    setTimeout(() => {
+                        el.classList.add('hovered');
+                    }, 10000);
+                    setTimeout(() => {
+                        el.classList.remove('hovered');
+                    }, 11000);
                 }
                 el.animate([{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x}rem, ${to.y}rem)` }], {
                     duration: (Math.random() + 2) * 5000, // random duration

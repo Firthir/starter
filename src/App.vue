@@ -15,7 +15,6 @@
         </div>
         <div class="page">
             <Nav />
-
             <transition name="fade" mode="out-in">
                 <router-view class="view"></router-view>
             </transition>
