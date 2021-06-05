@@ -6,7 +6,7 @@
                 <h1 class="text-2xl">
                     Daily Reflections
                 </h1>
-                <p class="text-xs">Interact with the floating flowers.</p>
+                <p class="text-xs">Interact with the falling flowers.</p>
                 <p class="text-xs">Take your time and enjoy the space.</p>
             </div>
             <div class="flowers">
