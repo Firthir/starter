@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import Alpha from '@/components/Alpha';
-import Nav from '@/components/Nav';
+import Alpha from './components/Alpha';
+import Nav from './components/Nav';
 export default {
     name: 'App',
     components: {
