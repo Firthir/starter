@@ -57,7 +57,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.wind();
-        }, 500);
+        }, 1500);
     },
     metaInfo() {
         return {
