@@ -14,7 +14,7 @@
                     v-for="(poem, index) in poems"
                     :key="poem.gsx$id"
                     :poem="poem"
-                    :style="`left: ${floorRandom(350)}px; --staggered: ${index};  top: ${floorRandom(200)}px; transform: sacle(${random()});`"
+                    :style="`left: ${floorRandom(240)}px; --staggered: ${index};  top: ${floorRandom(240)}px; transform: sacle(${random()});`"
                     :index="index"
                     :class="`group-${index % 4}`"
                     @mouseover.native="addClass"
@@ -22,9 +22,8 @@
                 />
             </div>
         </div>
-        <hr />
 
-        <h2 class="my-6">
+        <h2 class="my-6 mx-auto w-1/2 text-center text-2xl">
             Nature provides me the inspiration to express, not only the nature of materials, but also the nature of beauty and inner reflection. This is the essence of my work.
         </h2>
     </div>
@@ -55,9 +54,10 @@ export default {
         this.publicPath = process.env.BASE_URL;
     },
     mounted() {
+        console.log();
         setTimeout(() => {
             this.wind();
-        }, 1500);
+        }, 1000);
     },
     metaInfo() {
         return {
@@ -99,8 +99,8 @@ export default {
             let halfway = Math.floor(this.flowerGroup.length / 2);
             this.flowerGroup.forEach((el, i) => {
                 let to = {
-                    x: this.floorRandom(i % 2 === 0 ? -40 - -(4 * i) : -15 - -(2 * i)),
-                    y: Math.random() * 20,
+                    x: this.floorRandom(i % 2 === 0 ? -1300 - -(4 * i) : -200 - -(2 * i)),
+                    y: Math.random() * 700,
                 };
                 if (i === halfway) {
                     setTimeout(() => {
@@ -110,7 +110,7 @@ export default {
                         el.classList.remove('hovered');
                     }, 11000);
                 }
-                el.animate([{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x}rem, ${to.y}rem)` }], {
+                el.animate([{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x}%, ${to.y}%)` }], {
                     duration: (Math.random() + 2) * 5000, // random duration
                     direction: 'alternate',
                     fill: 'both',
